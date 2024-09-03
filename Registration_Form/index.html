@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registration_Form</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+    </head>
+    <body>
+        <main>
+            <form class="register-form">
+                <div class="register-form__title">
+                    <h3>Create an account</h3>
+                    <p>One last step before you starting your free trial.</p>
+                </div>
+                <div class="register-form__content">
+                    <div class="email flex-col">
+                        <label for="email">Email</label>
+                        <input type="email"
+                            id="email"
+                            name="email"
+                            required
+                            autocomplete="off"
+                            placeholder="Example@mail.com">
+                    </div>
+                    <div class="name flex-col">
+                        <div class="name-wrapper">
+                            <!-- First Name: Only alphabetic characters, minimum 2 characters -->
+                            <div class="first-name flex-col">
+                                <label for="first-name">First name</label>
+                                <input type="text"
+                                    id="first-name"
+                                    name="first-name"
+                                    required
+                                    autocomplete="off"
+                                    pattern="[A-Za-z]{2,}"
+                                    placeholder="Alice">
+                            </div>
+                            <!-- Last Name: Only alphabetic characters, minimum 2 characters -->
+                            <div class="last-name flex-col">
+                                <label for="last-name">Last name</label>
+                                <input type="text"
+                                    id="last-name"
+                                    name="last-name"
+                                    required
+                                    autocomplete="off"
+                                    pattern="[A-Za-z]{2,}"
+                                    placeholder="Green">
+                            </div>
+                        </div>
+                        <p class="hint">Only alphabetic characters, minimum 2
+                            characters.</p>
+                    </div>
+
+                    <!-- Password Validation: Minimum 8 characters, no leading or trailing spaces -->
+                    <div class="password flex-col">
+                        <label for="password">Password</label>
+                        <input type="password"
+                            id="password"
+                            name="password"
+                            required
+                            autocomplete="off"
+                            minlength="8"
+                            pattern="^(?! ).*(?<! )$"
+                            placeholder="Enter your password">
+                        <p class="hint">Your password must be at least 8
+                            characters, and can't begin or end with a space.</p>
+                    </div>
+
+                    <!-- Confirm Password Validation: Should match the above password -->
+                    <div class="confirm-password flex-col">
+                        <label for="confirmed-password">Confirm new
+                            password</label>
+                        <input type="password"
+                            id="confirmed-password"
+                            name="confirmed-password"
+                            required
+                            autocomplete="off"
+                            placeholder="Re-enter your password">
+                    </div>
+
+                    <!-- Date of Birth Validation -->
+                    <div class="dob flex-col">
+                        <label for="dob">Date of birth</label>
+                        <input
+                            type="date"
+                            id="dob"
+                            name="dob"
+                            required
+                            autocomplete="off">
+                    </div>
+
+                    <!-- Gender Selection: One option must be selected -->
+                    <div class="gender flex-col">
+                        <label for="male">Gender</label>
+                        <div class="gender-radio-wrapper">
+                            <div class="gender-male">
+                                <input
+                                    type="radio"
+                                    id="male"
+                                    name="gender"
+                                    value="male"
+                                    checked>
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="gender-female">
+                                <input
+                                    type="radio"
+                                    id="female"
+                                    name="gender"
+                                    value="female">
+                                <label for="female">Female</label>
+                            </div>
+                            <div class="gender-other">
+                                <input
+                                    type="radio"
+                                    id="other"
+                                    name="gender"
+                                    value="other">
+                                <label for="other">Other</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Anout Me -->
+                    <div class="dob flex-col">
+                        <label for="about-me">About me</label>
+                        <textarea name="about-me" id="about-me"
+                            maxlength="100"
+                            placeholder="Tell something about yourself"></textarea>
+                        <p class="hint">Maxmum characters 100.</p>
+                    </div>
+
+                    <!-- Profession Selection -->
+                    <div class="profession flex-col">
+                        <label for="profession">Profession</label>
+                        <div class="select-wrapper">
+                            <select name="profession" id="profession" required>
+                                <option value="web-dev" disabled selected>Web
+                                    development</option>
+                                <option value="mobile-dev">Mobile
+                                    development</option>
+                                <option value="data-ana">Data analytics</option>
+                                <option value="uix">UI/UX design</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="register-form__button">
+                    <input type="submit" value="Create account">
+                </div>
+            </form>
+        </main>
+    </body>
+</html>

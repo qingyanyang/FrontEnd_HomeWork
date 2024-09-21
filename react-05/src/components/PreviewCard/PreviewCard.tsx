@@ -1,27 +1,35 @@
 import {
   TextSmall,
   Column,
-  TextRegular,
+  TextSimiBold,
   TextBold,
   IconBox,
   TextMedium,
   SizedBox,
 } from "@/styles";
-import cloudyImage from "@/assets/cloudy.png";
 import { OtherDetailsCard } from "./OtherDetailsCard";
 import { DetailWrapper, PreviewCardWrapper } from "./style";
+import { getWeatherBGUrl, getWeatherIconUrl } from "@/utils/getImageUrl";
 export const PreviewCard = () => {
   return (
-    <PreviewCardWrapper $bgColor="blue" $padding={16} $borderRadius={20}>
+    <PreviewCardWrapper
+      $padding={16}
+      $borderRadius={20}
+      $url={getWeatherBGUrl("sunnyBg")}
+    >
       <TextSmall $color={"light"}>23 July, Sunday 12:00</TextSmall>
       <SizedBox $height={20} />
       <DetailWrapper>
-        <TextRegular $color="light">Sydney</TextRegular>
+        <TextSimiBold $color="light">Sydney</TextSimiBold>
         <Column>
           <TextBold $color="light">32</TextBold>
           <TextMedium $color="light">28 ~ 32</TextMedium>
         </Column>
-        <IconBox $url={cloudyImage} $width={140} $height={140} />
+        <IconBox
+          $url={getWeatherIconUrl("weatherIcon@2x/01d")}
+          $width={140}
+          $height={140}
+        />
         <OtherDetailsCard />
       </DetailWrapper>
     </PreviewCardWrapper>

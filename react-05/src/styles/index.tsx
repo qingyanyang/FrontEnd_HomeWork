@@ -10,13 +10,22 @@ export const TextSmall = styled(Text)`
 export const TextMedium = styled(Text)`
   font-size: 1rem;
 `;
+
 export const TextRegular = styled(Text)`
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+`;
+export const TextSimiBold = styled(Text)`
+  font-weight: 700;
+  font-size: 1.5rem;
 `;
 export const TextBold = styled(Text)`
   font-weight: 700;
   font-size: 5rem;
+  background-image: linear-gradient(#fff, #fff, #9bb6f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
 `;
 
 // Commonly used components
@@ -28,17 +37,17 @@ export const IconBox = styled.div<{
   width: ${(props) => props.$width}px;
   height: ${(props) => props.$height}px;
   background: url(${(props) => props.$url}) no-repeat;
-  background-size: cover;
+  background-size: contain;
 `;
 
 export const Card = styled.div<{
   $borderRadius?: number;
   $padding?: number;
-  $bgColor?: string;
+  $bg?: string;
   $width?: string;
 }>`
   width: ${(props) => (props.$width ? props.$width : "100%")};
-  background-color: ${(props) => (props.$bgColor ? props.$bgColor : "#fff")};
+  background: ${(props) => (props.$bg ? props.$bg : "#fff")};
   padding: ${(props) => (props.$padding ? props.$padding : 0)}px;
   border-radius: ${(props) =>
     props.$borderRadius ? props.$borderRadius : 0}px;

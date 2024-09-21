@@ -6,7 +6,7 @@ import {
   IconBox,
   TextMedium,
 } from "@/styles";
-import RainyNSunnyImg from "@/assets/RainyNSunny.png";
+import { getWeatherIconUrl } from "@/utils/getImageUrl";
 
 export const FutureWeatherCard = () => {
   return (
@@ -15,7 +15,11 @@ export const FutureWeatherCard = () => {
       <SizedBox $height={10} />
       <TextSmall>24 July</TextSmall>
       <SizedBox $height={20} />
-      <IconBox $url={RainyNSunnyImg} $width={120} $height={120} />
+      <IconBox
+        $url={getWeatherIconUrl("weatherIcon@2x/09d")}
+        $width={120}
+        $height={120}
+      />
       <SizedBox $height={20} />
       <TextMedium> 20 ~ 25</TextMedium>
     </Column>

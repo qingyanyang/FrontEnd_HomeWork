@@ -5,14 +5,4 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(
-      farthest-side at bottom left,
-      rgba(152, 115, 255, 0.5),
-      transparent
-    ),
-    radial-gradient(
-      farthest-corner at top right,
-      rgba(0, 255, 217, 0.5),
-      transparent
-    );
 }

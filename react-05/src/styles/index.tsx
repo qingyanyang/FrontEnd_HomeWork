@@ -1,0 +1,106 @@
+import styled from "styled-components";
+
+// Texts
+export const Text = styled.p<{ $color?: "dark" | "light" }>`
+  color: ${(props) => (props.$color === "light" ? "#fff" : "#000")};
+`;
+export const TextSmall = styled(Text)`
+  font-size: 0.8rem;
+`;
+export const TextMedium = styled(Text)`
+  font-size: 1rem;
+`;
+export const TextRegular = styled(Text)`
+  font-weight: 700;
+  font-size: 1.4rem;
+`;
+export const TextBold = styled(Text)`
+  font-weight: 700;
+  font-size: 5rem;
+`;
+
+// Commonly used components
+export const IconBox = styled.div<{
+  $url: string;
+  $width: number;
+  $height: number;
+}>`
+  width: ${(props) => props.$width}px;
+  height: ${(props) => props.$height}px;
+  background: url(${(props) => props.$url}) no-repeat;
+  background-size: cover;
+`;
+
+export const Card = styled.div<{
+  $borderRadius?: number;
+  $padding?: number;
+  $bgColor?: string;
+  $width?: string;
+}>`
+  width: ${(props) => (props.$width ? props.$width : "100%")};
+  background-color: ${(props) => (props.$bgColor ? props.$bgColor : "#fff")};
+  padding: ${(props) => (props.$padding ? props.$padding : 0)}px;
+  border-radius: ${(props) =>
+    props.$borderRadius ? props.$borderRadius : 0}px;
+`;
+
+export const Expanded = styled.div`
+  flex: 1;
+`;
+
+export const Padding = styled.div<{
+  $horizontal?: number;
+  $vertical?: number;
+  $top?: number;
+  $bottom?: number;
+  $right?: number;
+  $left?: number;
+}>`
+  width: 100%;
+  height: 100%;
+  padding-top: ${(props) => (props.$vertical ? props.$vertical : props.$top)}px;
+  padding-bottom: ${(props) =>
+    props.$vertical ? props.$vertical : props.$bottom}px;
+  padding-right: ${(props) =>
+    props.$horizontal ? props.$horizontal : props.$right}px;
+  padding-left: ${(props) =>
+    props.$horizontal ? props.$horizontal : props.$left}px;
+`;
+
+export const SizedBox = styled.div<{
+  $height?: number;
+  $width?: number;
+}>`
+  width: ${(props) => props.$width}px;
+  height: ${(props) => props.$height}px;
+`;
+
+export const Row = styled.div<{
+  $gap?: number;
+  $justifyContent?: string;
+}>`
+  display: flex;
+  gap: ${(props) => props.$gap}px;
+  align-items: center;
+  justify-content: ${(props) =>
+    props.$justifyContent ? props.$justifyContent : "center"};
+`;
+
+export const Column = styled.div<{
+  $gap?: number;
+  $justifyContent?: string;
+  $alignItems?: string;
+}>`
+  display: flex;
+  flex-direction: column;
+  gap: ${(props) => props.$gap}px;
+  align-items: ${(props) => (props.$alignItems ? props.$alignItems : "center")};
+  justify-content: ${(props) =>
+    props.$justifyContent ? props.$justifyContent : "center"};
+`;
+
+export const Center = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

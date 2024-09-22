@@ -6,20 +6,26 @@ import {
   SomatosensoryTemperature,
   WindSpeed,
 } from "./MetaISVGs";
-export const OtherDetailsCard = () => {
+import { MetaDetailType } from "@/types";
+export const OtherDetailsCard: React.FC<MetaDetailType> = ({
+  humidity,
+  pm25,
+  somatosensoryTemp,
+  windSpeed,
+}) => {
   return (
     <Card $borderRadius={10} $padding={15}>
       <Row $gap={20} $justifyContent="space-between">
-        <DetailWidget data={"85%"}>
+        <DetailWidget data={humidity}>
           <HumiditySVG />
         </DetailWidget>
-        <DetailWidget data={"9km/h"}>
+        <DetailWidget data={windSpeed}>
           <WindSpeed />
         </DetailWidget>
-        <DetailWidget data={"75"}>
+        <DetailWidget data={pm25}>
           <PM25 />
         </DetailWidget>
-        <DetailWidget data={"26"}>
+        <DetailWidget data={somatosensoryTemp}>
           <SomatosensoryTemperature />
         </DetailWidget>
       </Row>

@@ -2,6 +2,7 @@ import { Card } from "@/styles";
 import styled from "styled-components";
 
 export const PreviewCardWrapper = styled(Card)<{ $url?: string }>`
+  width: 280px;
   height: 100%;
   display: flex;
   flex-direction: column;

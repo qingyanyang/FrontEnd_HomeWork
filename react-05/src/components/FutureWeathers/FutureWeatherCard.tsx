@@ -6,22 +6,24 @@ import {
   IconBox,
   TextMedium,
 } from "@/styles";
+import { WeeklyWeatherDataType } from "@/types";
 import { getWeatherIconUrl } from "@/utils/getImageUrl";
 
-export const FutureWeatherCard = () => {
+export const FutureWeatherCard: React.FC<WeeklyWeatherDataType> = (props) => {
+  const { tempRange, iconCode, date, day } = props;
   return (
     <Column>
-      <TextRegular>Monday</TextRegular>
+      <TextRegular>{day}</TextRegular>
       <SizedBox $height={10} />
-      <TextSmall>24 July</TextSmall>
+      <TextSmall>{date}</TextSmall>
       <SizedBox $height={20} />
       <IconBox
-        $url={getWeatherIconUrl("weatherIcon@2x/09d")}
-        $width={120}
-        $height={120}
+        $url={getWeatherIconUrl(`weatherIcon@2x/${iconCode}`)}
+        $width={110}
+        $height={110}
       />
       <SizedBox $height={20} />
-      <TextMedium> 20 ~ 25</TextMedium>
+      <TextMedium> {tempRange}</TextMedium>
     </Column>
   );
 };

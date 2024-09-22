@@ -1,1 +1,1 @@
-export * from "./courseCardItem";
+export * from "./weatherPageItem";

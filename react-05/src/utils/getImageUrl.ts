@@ -7,3 +7,7 @@ export function getWeatherBGUrl(name: string): string {
     window.location.origin
   ).href;
 }
+export function getCityBgUrl(name: string): string {
+  return new URL(`/src/assets/cityImages/${name}.png`, window.location.origin)
+    .href;
+}

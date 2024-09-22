@@ -45,9 +45,12 @@ export const Card = styled.div<{
   $padding?: number;
   $bg?: string;
   $width?: string;
+  $url?: string;
 }>`
+  background-size: cover;
+  background-image: ${(props) => props.$bg}, url(${(props) => props.$url});
   width: ${(props) => (props.$width ? props.$width : "100%")};
-  background: ${(props) => (props.$bg ? props.$bg : "#fff")};
+  background-color: #fff;
   padding: ${(props) => (props.$padding ? props.$padding : 0)}px;
   border-radius: ${(props) =>
     props.$borderRadius ? props.$borderRadius : 0}px;
@@ -99,7 +102,9 @@ export const Column = styled.div<{
   $gap?: number;
   $justifyContent?: string;
   $alignItems?: string;
+  $height?: string;
 }>`
+  height: ${(props) => (props.$height ? props.$height : "auto")};
   display: flex;
   flex-direction: column;
   gap: ${(props) => props.$gap}px;
@@ -112,4 +117,9 @@ export const Center = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const NotificationText = styled.h1`
+  text-align: center;
+  color: #9bb6f7;
 `;

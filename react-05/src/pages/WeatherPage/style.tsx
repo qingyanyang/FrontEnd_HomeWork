@@ -2,6 +2,9 @@ import { Card } from "@/styles";
 import styled from "styled-components";
 
 export const CardsContainer = styled(Card)`
+  display: flex;
+  algin-items: center;
+  justify-content: center;
   width: 1000px;
   height: 550px;
   display: flex;

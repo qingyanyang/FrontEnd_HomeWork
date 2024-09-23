@@ -36,7 +36,7 @@ export const IconBox = styled.div<{
 }>`
   width: ${(props) => props.$width}px;
   height: ${(props) => props.$height}px;
-  background: url(${(props) => props.$url}) no-repeat;
+  background: url(${(props) => props.$url}) no-repeat center;
   background-size: contain;
 `;
 
@@ -120,6 +120,7 @@ export const Center = styled.div`
 `;
 
 export const NotificationText = styled.h1`
+  margin: auto 0;
   text-align: center;
   color: #9bb6f7;
 `;

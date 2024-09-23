@@ -124,7 +124,7 @@ export const mappingWeatherModel = (data: any): CityWeatherDataType => {
  * iconText.contains('sunny') -> return '01d'
  * iconText.contains('clear') -> return '01n'
  * iconText.contains('cloudy') -> return '03d'
- * iconText.contains('overcast') -> return '04d'
+ * iconText.contains('overcast') -> return '10d'
  * iconText.contains('mist') -> return '04d'
  * iconText.contains('rain') -> return '09d'
  * iconText.contains('snow') -> return '13d'
@@ -145,8 +145,10 @@ function getIconCode(iconText: string) {
     return "01n";
   } else if (iconText.includes("cloudy")) {
     return "03d";
-  } else if (iconText.includes("overcast") || iconText.includes("mist")) {
+  } else if (iconText.includes("mist")) {
     return "04d";
+  } else if (iconText.includes("overcast")) {
+    return "10d";
   } else if (iconText.includes("rain")) {
     return "09d";
   } else if (
@@ -168,3 +170,40 @@ function getIconCode(iconText: string) {
     return "10d"; // default value
   }
 }
+
+/**
+ *
+ * includes('01')->'linear-gradient(to bottom right,rgba(153, 178, 239, 1),rgba(26, 110, 234, 0.8))'
+ *includes('11')->'linear-gradient(to bottom right,rgba(142, 164, 233, 1),rgba(92, 77, 212, 0.8))'
+ *includes('10|09')->'linear-gradient(to bottom right,rgba(137, 151, 233, 1),rgba(68, 84, 220, 0.8))'
+ */
+export const getCityBgColorString = (weatherIconCode: string) => {
+  let colorLight = "rgba(153, 178, 239, 1)";
+  let colorDark = "rgba(26, 110, 234, 0.8)";
+
+  if (weatherIconCode.includes("11")) {
+    colorLight = "rgba(142, 164, 233, 1)";
+    colorDark = "rgba(92, 77, 212, 0.8)";
+  } else if (weatherIconCode.includes("10") || weatherIconCode.includes("09")) {
+    colorLight = "rgba(137, 151, 233, 1)";
+    colorDark = "rgba(68, 84, 220, 0.8)";
+  }
+
+  const bgString = `linear-gradient(to bottom right,${colorLight},${colorDark})`;
+  return bgString;
+};
+
+export const getPreviewBgColorString = (weatherIconCode: string) => {
+  let colorLight = "rgba(153, 178, 239, 1)";
+  let colorDark = "rgba(26, 110, 234, 0.8)";
+
+  if (weatherIconCode.includes("11")) {
+    colorLight = "rgba(142, 164, 233, 1)";
+    colorDark = "rgba(92, 77, 212, 0.8)";
+  } else if (weatherIconCode.includes("10") || weatherIconCode.includes("09")) {
+    colorLight = "rgba(137, 151, 233, 1)";
+    colorDark = "rgba(68, 84, 220, 0.8)";
+  }
+
+  return { colorLight, colorDark };
+};

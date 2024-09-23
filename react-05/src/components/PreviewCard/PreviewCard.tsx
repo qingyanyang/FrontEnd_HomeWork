@@ -11,6 +11,7 @@ import { OtherDetailsCard } from "./OtherDetailsCard";
 import { DetailWrapper, PreviewCardWrapper } from "./style";
 import { getWeatherBGUrl, getWeatherIconUrl } from "@/utils/getImageUrl";
 import { TodayWeatherDataType } from "@/types";
+import { getPreviewBgColorString } from "@/utils/getMappingdata";
 
 export const PreviewCard: React.FC<TodayWeatherDataType> = (props) => {
   const { cityName, tempRange, iconCode, date, day, time, metaDetails } = props;
@@ -20,7 +21,9 @@ export const PreviewCard: React.FC<TodayWeatherDataType> = (props) => {
     <PreviewCardWrapper
       $padding={16}
       $borderRadius={28}
-      $url={getWeatherBGUrl("sunnyBg")}
+      $url={getWeatherBGUrl(iconCode)}
+      $bgColorLight={getPreviewBgColorString(iconCode).colorLight}
+      $bgColorDark={getPreviewBgColorString(iconCode).colorDark}
     >
       <TextSmall $color={"light"}>
         {date},&nbsp;{day}&nbsp;{time}
@@ -37,7 +40,7 @@ export const PreviewCard: React.FC<TodayWeatherDataType> = (props) => {
           $width={140}
           $height={140}
         />
-        <OtherDetailsCard {...metaDetails} />
+        {metaDetails && <OtherDetailsCard {...metaDetails} />}
       </DetailWrapper>
     </PreviewCardWrapper>
   );

@@ -9,6 +9,7 @@ import {
 import { CityCardType } from "@/types";
 import { getCityBgUrl, getWeatherIconUrl } from "@/utils/getImageUrl";
 import { CityCardWrapper } from "./style";
+import { getCityBgColorString } from "@/utils/getMappingdata";
 
 interface CityCardProps extends CityCardType {
   onClick: () => void;
@@ -21,9 +22,7 @@ export const CityCard: React.FC<CityCardProps> = ({
 }) => {
   return (
     <CityCardWrapper
-      $bg={
-        "linear-gradient(to bottom right,rgba(153, 178, 239, 1),rgba(26, 110, 234, 0.8))"
-      }
+      $bg={getCityBgColorString(weatherIconCode)}
       $url={getCityBgUrl(cityName)}
       onClick={onClick}
       $borderRadius={16}

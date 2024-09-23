@@ -379,6 +379,7 @@ const WeatherPage = () => {
   //   return <NotificationText>Loading...</NotificationText>;
   // }
   console.log("defaultWeatherInfo", defaultWeatherInfo);
+
   return (
     <CardsContainer $borderRadius={40} $padding={20}>
       {defaultWeatherInfo.length > 0 ? (

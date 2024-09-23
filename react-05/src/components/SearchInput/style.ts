@@ -10,10 +10,16 @@ export const Input = styled.input`
   font-size: 0.9rem;
 `;
 export const SearchBar = styled.button`
-  height: 100%;
   border: none;
   border-radius: 10px;
   background-color: #5a4ed6;
   color: #fff;
-  padding: 0.5rem 1.2rem;
+  padding: 0.7rem 1.2rem;
+  &:hover {
+    background-color: #6e64d4;
+    cursor: pointer;
+  }
+  &:active {
+    background-color: #5a4ed6;
+  }
 `;

@@ -1,5 +1,4 @@
 import {
-  Card,
   Column,
   IconBox,
   TextRegular,
@@ -9,6 +8,7 @@ import {
 } from "@/styles";
 import { CityCardType } from "@/types";
 import { getCityBgUrl, getWeatherIconUrl } from "@/utils/getImageUrl";
+import { CityCardWrapper } from "./style";
 
 interface CityCardProps extends CityCardType {
   onClick: () => void;
@@ -20,15 +20,10 @@ export const CityCard: React.FC<CityCardProps> = ({
   onClick,
 }) => {
   return (
-    <Card
-      $borderRadius={16}
+    <CityCardWrapper
       $url={getCityBgUrl(cityName)}
-      $bg={
-        "linear-gradient(to bottom right, rgba(153, 178, 239,1), rgba(26, 110, 234, 0.8))"
-      }
       onClick={onClick}
-      // 8999ec 565fcf
-      // 898be3 675dd1
+      $borderRadius={16}
     >
       <Padding $horizontal={15} $vertical={15}>
         <Column>
@@ -43,6 +38,6 @@ export const CityCard: React.FC<CityCardProps> = ({
           <TextSmall $color="light">{cityTempRange}</TextSmall>
         </Column>
       </Padding>
-    </Card>
+    </CityCardWrapper>
   );
 };

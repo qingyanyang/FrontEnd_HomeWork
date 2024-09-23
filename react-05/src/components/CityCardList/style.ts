@@ -6,11 +6,6 @@ export const CityListWrapper = styled(Row)`
 `;
 
 export const CityCardWrapper = styled(Card)`
-  background-image: linear-gradient(
-    to bottom right,
-    rgba(153, 178, 239, 1),
-    rgba(26, 110, 234, 0.8)
-  );
   &:hover {
     cursor: pointer;
     position: relative;

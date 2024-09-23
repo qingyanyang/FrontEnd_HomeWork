@@ -9,7 +9,7 @@ export interface WeeklyWeatherDataType {
   date: string;
   day: string;
   time: string;
-  metaDetails: MetaDetailType;
+  metaDetails: MetaDetailType | null;
 }
 
 export interface TodayWeatherDataType extends WeeklyWeatherDataType {

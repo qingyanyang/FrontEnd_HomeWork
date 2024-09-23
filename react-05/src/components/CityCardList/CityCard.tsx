@@ -21,6 +21,9 @@ export const CityCard: React.FC<CityCardProps> = ({
 }) => {
   return (
     <CityCardWrapper
+      $bg={
+        "linear-gradient(to bottom right,rgba(153, 178, 239, 1),rgba(26, 110, 234, 0.8))"
+      }
       $url={getCityBgUrl(cityName)}
       onClick={onClick}
       $borderRadius={16}

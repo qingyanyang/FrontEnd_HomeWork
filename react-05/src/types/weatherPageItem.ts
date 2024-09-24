@@ -28,3 +28,10 @@ export type CityCardType = {
   cityTempRange: string;
   weatherIconCode: string;
 };
+
+export type LoadingErrorContextType = {
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
+  error: string | null;
+  setError: (error: string | null) => void;
+};

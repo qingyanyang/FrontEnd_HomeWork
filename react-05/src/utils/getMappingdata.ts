@@ -137,7 +137,7 @@ export const mappingWeatherModel = (data: any): CityWeatherDataType => {
  * iconText.contains('fog') -> return '50d'
  * default: 10d
  */
-function getIconCode(iconText: string) {
+const getIconCode = (iconText: string) => {
   iconText = iconText.toLocaleLowerCase();
   if (iconText.includes("sunny")) {
     return "01d";
@@ -169,7 +169,7 @@ function getIconCode(iconText: string) {
   } else {
     return "10d"; // default value
   }
-}
+};
 
 /**
  *

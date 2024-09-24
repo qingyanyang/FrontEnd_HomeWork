@@ -2,6 +2,7 @@ import { Card } from "@/styles";
 import styled from "styled-components";
 
 export const CardsContainer = styled(Card)`
+  position: relative;
   display: flex;
   algin-items: center;
   justify-content: center;

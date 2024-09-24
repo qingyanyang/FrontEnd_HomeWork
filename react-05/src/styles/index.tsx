@@ -114,13 +114,13 @@ export const Column = styled.div<{
 `;
 
 export const Center = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const NotificationText = styled.h1`
-  margin: auto 0;
-  text-align: center;
-  color: #9bb6f7;
+export const Float = styled(Center)`
+  position: absolute;
 `;

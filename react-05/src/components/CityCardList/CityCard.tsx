@@ -7,7 +7,7 @@ import {
   Padding,
 } from "@/styles";
 import { CityCardType } from "@/types";
-import { getCityBgUrl, getWeatherIconUrl } from "@/utils/getImageUrl";
+import { getCityBgUrl, getWeatherIcon1XUrl } from "@/utils/getImageUrl";
 import { CityCardWrapper } from "./style";
 import { getCityBgColorString } from "@/utils/getMappingdata";
 
@@ -30,7 +30,7 @@ export const CityCard: React.FC<CityCardProps> = ({
       <Padding $horizontal={15} $vertical={15}>
         <Column>
           <IconBox
-            $url={getWeatherIconUrl(`weatherIcon@1x/${weatherIconCode}`)}
+            $url={getWeatherIcon1XUrl(weatherIconCode)}
             $width={40}
             $height={40}
           />

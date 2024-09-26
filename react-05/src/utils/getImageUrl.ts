@@ -1,5 +1,11 @@
-export function getWeatherIconUrl(name: string): string {
-  return new URL(`/src/assets/${name}.webp`, window.location.origin).href;
+export function getWeatherIcon1XUrl(name: string): string {
+  return new URL(`/src/assets/weatherIcon@1x/${name}.webp`, import.meta.url)
+    .href;
+}
+
+export function getWeatherIcon2XUrl(name: string): string {
+  return new URL(`/src/assets/weatherIcon@2x/${name}.webp`, import.meta.url)
+    .href;
 }
 
 /**
@@ -20,12 +26,10 @@ export function getWeatherBGUrl(weatherIconCode: string): string {
     name = "rainBg";
   }
 
-  const imgUrl = `/src/assets/weatherBackground/${name}.png`;
-
-  return new URL(imgUrl, window.location.origin).href;
+  return new URL(`/src/assets/weatherBackground/${name}.png`, import.meta.url)
+    .href;
 }
 
 export function getCityBgUrl(name: string): string {
-  return new URL(`/src/assets/cityImages/${name}.png`, window.location.origin)
-    .href;
+  return new URL(`/src/assets/cityImages/${name}.png`, import.meta.url).href;
 }

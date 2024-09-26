@@ -9,7 +9,7 @@ import {
 } from "@/styles";
 import { OtherDetailsCard } from "./OtherDetailsCard";
 import { DetailWrapper, PreviewCardWrapper } from "./style";
-import { getWeatherBGUrl, getWeatherIconUrl } from "@/utils/getImageUrl";
+import { getWeatherBGUrl, getWeatherIcon2XUrl } from "@/utils/getImageUrl";
 import { TodayWeatherDataType } from "@/types";
 import { getPreviewBgColorString } from "@/utils/getMappingdata";
 
@@ -36,7 +36,7 @@ export const PreviewCard: React.FC<TodayWeatherDataType> = (props) => {
           <TextMedium $color="light">{tempRange}</TextMedium>
         </Column>
         <IconBox
-          $url={getWeatherIconUrl(`weatherIcon@2x/${iconCode}`)}
+          $url={getWeatherIcon2XUrl(iconCode)}
           $width={140}
           $height={140}
         />

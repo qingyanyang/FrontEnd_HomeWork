@@ -1,5 +1,7 @@
 # (React + TypeScript + Vite) x Weather APP
 
+# Live demo
+You can view the live demo of the project [here](https://d3r97ahvziu1yw.cloudfront.net/).
 ## Prepare
 
 Node Version: v22.1.0

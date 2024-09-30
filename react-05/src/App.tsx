@@ -36,5 +36,6 @@ const InnerApp: React.FC<InnerAppProps> = ({ element, messageApi }) => {
       });
     }
   }, [error, messageApi]);
+
   return <div className="App">{element}</div>;
 };

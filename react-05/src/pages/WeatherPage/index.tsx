@@ -11,15 +11,16 @@ import {
   getForcastData,
   getTodayData,
 } from "@/utils/getFormattedData";
-import { fetchWeatherData } from "@/service/httpClient";
-import { mappingWeatherModel } from "@/utils/getMappingdata";
+import {
+  fetchDefaultWeatherData,
+  fetchSearchedWeatherData,
+} from "@/service/httpClient";
 import { useLoadingError } from "@/context/useLoadingError";
 import { FadeLoader } from "react-spinners";
 
-const cityList = ["Sydney", "Shanghai", "New York", "London"];
-
 const WeatherPage = () => {
   const { loading, setLoading, setError } = useLoadingError();
+
   const [defaultWeatherInfo, setDefaultWeatherInfo] = useState<
     CityWeatherDataType[]
   >([]);
@@ -28,6 +29,7 @@ const WeatherPage = () => {
     useState<CityWeatherDataType | null>(null);
   const [selectedCityIndex, setSelectedCityIndex] = useState<number>(0);
 
+  // handle events
   const getSearchedCityInput = (input: string) => {
     setSearchedCityName(input);
   };
@@ -39,23 +41,11 @@ const WeatherPage = () => {
 
   // fetch default city value
   useEffect(() => {
-    const getDefaultWeatherData = async () => {
+    (async () => {
       try {
         setError(null);
         setLoading(true);
-        const weatherPromise = cityList.map((cityName) =>
-          fetchWeatherData(cityName)
-        );
-
-        const weatherDataList = Promise.all(weatherPromise);
-        const validWeatherDataList = (await weatherDataList).filter(
-          (data) => data != null
-        );
-
-        const defaultWeatherData = validWeatherDataList.map((singleData) =>
-          mappingWeatherModel(singleData)
-        );
-
+        const defaultWeatherData = await fetchDefaultWeatherData();
         setDefaultWeatherInfo(defaultWeatherData);
       } catch (err) {
         console.error(err);
@@ -63,30 +53,27 @@ const WeatherPage = () => {
       } finally {
         setLoading(false);
       }
-    };
-    getDefaultWeatherData();
-  }, [setError, setLoading]);
+    })();
+  }, []);
 
   // searched content change
   useEffect(() => {
-    const fetchSearchedWeatherData = async () => {
-      if (searchedCityName) {
-        try {
-          setError(null);
-          setLoading(true);
-          const newWeatherInfo = await fetchWeatherData(searchedCityName);
-          if (newWeatherInfo)
-            setSearchedCityWeatherData(mappingWeatherModel(newWeatherInfo));
-        } catch (err) {
-          console.error(err);
-          setError("Cannot find the city, \nPlease check your spelling.");
-        } finally {
-          setLoading(false);
+    (async () => {
+      try {
+        setError(null);
+        setLoading(true);
+        const newWeatherInfo = await fetchSearchedWeatherData(searchedCityName);
+        if (newWeatherInfo) {
+          setSearchedCityWeatherData(newWeatherInfo);
         }
+      } catch (err) {
+        console.error(err);
+        setError("Cannot find the city, \nPlease check your spelling.");
+      } finally {
+        setLoading(false);
       }
-    };
-    fetchSearchedWeatherData();
-  }, [searchedCityName, setError, setLoading]);
+    })();
+  }, [searchedCityName]);
 
   return (
     <>

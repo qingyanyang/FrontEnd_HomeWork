@@ -20,7 +20,6 @@ import { FadeLoader } from "react-spinners";
 
 const WeatherPage = () => {
   const { loading, setLoading, setError } = useLoadingError();
-
   const [defaultWeatherInfo, setDefaultWeatherInfo] = useState<
     CityWeatherDataType[]
   >([]);
@@ -55,24 +54,27 @@ const WeatherPage = () => {
       }
     })();
   }, []);
-
   // searched content change
   useEffect(() => {
-    (async () => {
-      try {
-        setError(null);
-        setLoading(true);
-        const newWeatherInfo = await fetchSearchedWeatherData(searchedCityName);
-        if (newWeatherInfo) {
-          setSearchedCityWeatherData(newWeatherInfo);
+    if (searchedCityName) {
+      (async () => {
+        try {
+          setError(null);
+          setLoading(true);
+          const newWeatherInfo = await fetchSearchedWeatherData(
+            searchedCityName
+          );
+          if (newWeatherInfo) {
+            setSearchedCityWeatherData(newWeatherInfo);
+          }
+        } catch (err) {
+          console.error(err);
+          setError("Cannot find the city, \nPlease check your spelling.");
+        } finally {
+          setLoading(false);
         }
-      } catch (err) {
-        console.error(err);
-        setError("Cannot find the city, \nPlease check your spelling.");
-      } finally {
-        setLoading(false);
-      }
-    })();
+      })();
+    }
   }, [searchedCityName]);
 
   return (

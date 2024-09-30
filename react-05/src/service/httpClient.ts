@@ -1,4 +1,4 @@
-import { WEATHER_API_KEY, WEATHER_BASE_URL } from "@/constants";
+import { CITY_LIST, WEATHER_API_KEY, WEATHER_BASE_URL } from "@/constants";
 import { mappingWeatherModel } from "@/utils/getMappingdata";
 import axios from "axios";
 
@@ -14,7 +14,7 @@ export const fetchWeatherData = async (cityName: string) => {
 };
 
 export const fetchDefaultWeatherData = async () => {
-  const cityListString = import.meta.env.VITE_REACT_APP_CITY_LIST;
+  const cityListString = CITY_LIST;
   const cityList = cityListString.split(",");
 
   const weatherPromise = cityList.map((cityName: string) =>

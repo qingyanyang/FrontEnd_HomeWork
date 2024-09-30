@@ -6,6 +6,7 @@ type CityCardListProps = {
   cityList: CityCardType[];
   getClickedCity: (index: number) => void;
 };
+
 export const CityCardList: React.FC<CityCardListProps> = ({
   cityList,
   getClickedCity,

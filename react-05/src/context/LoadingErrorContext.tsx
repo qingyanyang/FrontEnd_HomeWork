@@ -9,7 +9,7 @@ export const LoadingErrorProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>("");
+  const [error, setError] = useState<string | null>(null);
 
   return (
     <LoadingErrorContext.Provider

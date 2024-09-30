@@ -1,3 +1,11 @@
+import {
+  DEFAULT_COLOR_DARK,
+  DEFAULT_COLOR_LIGHT,
+  RAIN_COLOR_DARK,
+  RAIN_COLOR_LIGHT,
+  THUNDERSTORM_COLOR_DARK,
+  THUNDERSTORM_COLOR_LIGHT,
+} from "@/constants";
 import { CityWeatherDataType } from "@/types";
 import dayjs from "dayjs";
 /**
@@ -121,89 +129,107 @@ export const mappingWeatherModel = (data: any): CityWeatherDataType => {
 
 /**
  * let iconText
- * iconText.contains('sunny') -> return '01d'
- * iconText.contains('clear') -> return '01n'
- * iconText.contains('cloudy') -> return '03d'
- * iconText.contains('overcast') -> return '10d'
- * iconText.contains('mist') -> return '04d'
- * iconText.contains('rain') -> return '09d'
- * iconText.contains('snow') -> return '13d'
- * iconText.contains('sleet') -> return '13d'
- * iconText.contains('drizzle') -> return '09d'
- * iconText.contains('ice') -> return '13d'
- * iconText.contains('partly cloudy') -> return '02d'
- * iconText.contains('thunder') -> return '11d'
- * iconText.contains('blizzard') -> return '13d'
- * iconText.contains('fog') -> return '50d'
- * default: 10d
+ * iconText.contains('sunny') -> return 'sunnyIcon'
+ * iconText.contains('clear') -> return 'sunnyNightIcon'
+ * iconText.contains('cloudy') -> return 'cloudyIcon'
+ * iconText.contains('partly cloudy') -> return 'partialCloudyIcon'
+ * iconText.contains('overcast') -> return 'overcastIcon'
+ * iconText.contains('mist') -> return 'rainIcon'
+ * iconText.contains('rain') -> return 'rainIcon'
+ * iconText.contains('drizzle') -> return 'drizzleIcon'
+ * iconText.contains('snow') -> return 'snowIcon'
+ * iconText.contains('sleet') -> return 'snowIcon'
+ * iconText.contains('ice') -> return 'snowIcon'
+ * iconText.contains('blizzard') -> return 'snowIcon'
+ * iconText.contains('thunder') -> return 'thunderIcon'
+ * iconText.contains('fog') -> return 'fogIcon'
+ * default: "drizzleIcon"
  */
 const getIconCode = (iconText: string) => {
   iconText = iconText.toLocaleLowerCase();
   if (iconText.includes("sunny")) {
-    return "01d";
+    return "sunnyIcon";
   } else if (iconText.includes("clear")) {
-    return "01n";
+    return "sunnyNightIcon";
   } else if (iconText.includes("cloudy")) {
-    return "03d";
-  } else if (iconText.includes("mist")) {
-    return "04d";
+    return "cloudyIcon";
+  } else if (iconText.includes("mist") || iconText.includes("rain")) {
+    return "rainIcon";
   } else if (iconText.includes("overcast")) {
-    return "10d";
-  } else if (iconText.includes("rain")) {
-    return "09d";
+    return "overcastIcon";
   } else if (
     iconText.includes("snow") ||
     iconText.includes("sleet") ||
     iconText.includes("ice") ||
     iconText.includes("blizzard")
   ) {
-    return "13d";
+    return "snowIcon";
   } else if (iconText.includes("drizzle")) {
-    return "09d";
+    return "drizzleIcon";
   } else if (iconText.includes("partly cloudy")) {
-    return "02d";
+    return "partialCloudyIcon";
   } else if (iconText.includes("thunder")) {
-    return "11d";
+    return "thunderIcon";
   } else if (iconText.includes("fog")) {
-    return "50d";
+    return "fogIcon";
   } else {
-    return "10d"; // default value
+    return "drizzleIcon"; // default value
   }
 };
 
 /**
  *
- * includes('01')->'linear-gradient(to bottom right,rgba(153, 178, 239, 1),rgba(26, 110, 234, 0.8))'
- *includes('11')->'linear-gradient(to bottom right,rgba(142, 164, 233, 1),rgba(92, 77, 212, 0.8))'
- *includes('10|09')->'linear-gradient(to bottom right,rgba(137, 151, 233, 1),rgba(68, 84, 220, 0.8))'
+ *includes('thunderIcon|snowIcon')-> thunder color
+ *includes('rainIcon|drizzleIcon')-> rain color
  */
 export const getCityBgColorString = (weatherIconCode: string) => {
-  let colorLight = "rgba(153, 178, 239, 1)";
-  let colorDark = "rgba(26, 110, 234, 0.8)";
-
-  if (weatherIconCode.includes("11")) {
-    colorLight = "rgba(142, 164, 233, 1)";
-    colorDark = "rgba(92, 77, 212, 0.8)";
-  } else if (weatherIconCode.includes("10") || weatherIconCode.includes("09")) {
-    colorLight = "rgba(137, 151, 233, 1)";
-    colorDark = "rgba(68, 84, 220, 0.8)";
-  }
-
-  const bgString = `linear-gradient(to bottom right,${colorLight},${colorDark})`;
+  const { colorLight, colorDark } = getPreviewBgColorString(weatherIconCode);
+  const bgString = `linear-gradient(to bottom right,${colorLight} 10%,${colorDark})`;
   return bgString;
 };
 
 export const getPreviewBgColorString = (weatherIconCode: string) => {
-  let colorLight = "rgba(153, 178, 239, 1)";
-  let colorDark = "rgba(26, 110, 234, 0.8)";
+  let colorLight = DEFAULT_COLOR_LIGHT;
+  let colorDark = DEFAULT_COLOR_DARK;
 
-  if (weatherIconCode.includes("11")) {
-    colorLight = "rgba(142, 164, 233, 1)";
-    colorDark = "rgba(92, 77, 212, 0.8)";
-  } else if (weatherIconCode.includes("10") || weatherIconCode.includes("09")) {
-    colorLight = "rgba(137, 151, 233, 1)";
-    colorDark = "rgba(68, 84, 220, 0.8)";
+  if (
+    weatherIconCode.includes("thunderIcon") ||
+    weatherIconCode.includes("snowIcon")
+  ) {
+    colorLight = THUNDERSTORM_COLOR_LIGHT;
+    colorDark = THUNDERSTORM_COLOR_DARK;
+  } else if (
+    weatherIconCode.includes("rainIcon") ||
+    weatherIconCode.includes("drizzleIcon")
+  ) {
+    colorLight = RAIN_COLOR_LIGHT;
+    colorDark = RAIN_COLOR_DARK;
   }
-
   return { colorLight, colorDark };
 };
+
+/**
+ *
+ *includes('sunnyIcon|sunnyNightIcon')->'sunnyBg'
+ *includes('snowIcon')->'snowBg'
+ *includes('rainIcon|drizzleIcon')->'rainBg'
+ */
+export function getPreviewBg(weatherIconCode: string): string {
+  let name = "cloudyBg";
+
+  if (
+    weatherIconCode.includes("sunnyIcon") ||
+    weatherIconCode.includes("sunnyNightIcon")
+  ) {
+    name = "sunnyBg";
+  } else if (weatherIconCode.includes("snowIcon")) {
+    name = "snowBg";
+  } else if (
+    weatherIconCode.includes("rainIcon") ||
+    weatherIconCode.includes("drizzleIcon")
+  ) {
+    name = "rainBg";
+  }
+
+  return name;
+}

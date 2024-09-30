@@ -14,6 +14,7 @@ import { getCityBgColorString } from "@/utils/getMappingdata";
 interface CityCardProps extends CityCardType {
   onClick: () => void;
 }
+
 export const CityCard: React.FC<CityCardProps> = ({
   cityName,
   cityTempRange,

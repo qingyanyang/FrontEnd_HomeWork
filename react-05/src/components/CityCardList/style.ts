@@ -6,6 +6,8 @@ export const CityListWrapper = styled(Row)`
 `;
 
 export const CityCardWrapper = styled(Card)`
+  display: flex;
+  justify-content: center;
   &:hover {
     cursor: pointer;
     position: relative;

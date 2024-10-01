@@ -12,7 +12,7 @@ export const CityCardList: React.FC<CityCardListProps> = ({
   getClickedCity,
 }) => {
   return (
-    <Row $justifyContent="space-between" $gap={20}>
+    <Row data-testid="city-cards" $justifyContent="space-between" $gap={20}>
       {cityList.map((singleCityData, index) => {
         return (
           <CityCard

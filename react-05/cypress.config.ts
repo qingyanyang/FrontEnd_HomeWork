@@ -7,4 +7,6 @@ export default defineConfig({
       bundler: "vite",
     },
   },
+  viewportHeight: 660,
+  viewportWidth: 1000,
 });

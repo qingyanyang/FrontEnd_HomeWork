@@ -2,6 +2,7 @@
   position: fixed;
   width: 100%;
   background-color: rgb(57, 53, 170);
+  z-index: 999;
 }
 .nav-bar ul {
   padding: 2rem 0;
@@ -15,15 +16,23 @@
 .nav-bar p {
   color: #ff7247;
 }
-.page {
-  padding-top: 10rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: center;
+
+.grid-container {
+  margin: 0 auto;
+  padding: 10rem 2rem 2rem 2rem;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 40px;
   color: azure;
 }
-
+.page {
+  padding-top: 10rem;
+  color: azure;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /* CSS */
 button {
   align-items: center;
@@ -99,7 +108,6 @@ button:after {
   transition: all 100ms ease-out;
   z-index: -1;
 }
-
 button:hover:not(:disabled):after {
   bottom: 0;
   left: 0;

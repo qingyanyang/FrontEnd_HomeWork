@@ -14,7 +14,6 @@ const LoginPage = () => {
 
   return (
     <div className="page">
-      LoginPage
       <button
         onClick={() => {
           login();

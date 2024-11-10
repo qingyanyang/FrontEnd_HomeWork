@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/useUser";
 import { useAppDispatch } from "../../store/hooks";
 import { taggleIsEnrolledAsync } from "../../store/modules/courseSlice";
 import "./CourseCard.css";
@@ -31,14 +33,24 @@ const CourseCard: React.FC<courseType & { fromProfile?: boolean }> = ({
     reviews,
     price,
   } = course;
+  const { isAuthenticated } = useUser();
+  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
   const handleEnrollCourse = (isEnrolled: boolean) => {
-    dispatch(taggleIsEnrolledAsync(id, isEnrolled));
+    if (isAuthenticated) {
+      dispatch(taggleIsEnrolledAsync(id, isEnrolled));
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
-    <div className={`course-card ${isEnrolled && "course-card__badge"}`}>
+    <div
+      className={`course-card ${
+        isAuthenticated && isEnrolled && "course-card__badge"
+      }`}
+    >
       <div
         className="course-card__image"
         style={{ "--imgLink": `url(${imgLink})` } as React.CSSProperties}
@@ -55,6 +67,13 @@ const CourseCard: React.FC<courseType & { fromProfile?: boolean }> = ({
               className="enroll-btn"
             >
               Cancel
+            </button>
+          ) : !isAuthenticated ? (
+            <button
+              onClick={() => handleEnrollCourse(true)}
+              className="enroll-btn"
+            >
+              Enroll
             </button>
           ) : isEnrolled ? (
             <button disabled className="enroll-btn">

@@ -20,7 +20,7 @@
       "language": "English",
       "duration": "3 month",
       "location": "remote",
-      "isEnrolled": true,
+      "isEnrolled": false,
       "score": 3.9,
       "reviews": 102
     },
@@ -44,7 +44,7 @@
       "language": "Mandarin",
       "duration": "1 month",
       "location": "remote",
-      "isEnrolled": false,
+      "isEnrolled": true,
       "score": 4.9,
       "reviews": 599
     },
@@ -56,7 +56,7 @@
       "language": "English",
       "duration": "1 month",
       "location": "remote",
-      "isEnrolled": true,
+      "isEnrolled": false,
       "score": 4.2,
       "reviews": 290
     }

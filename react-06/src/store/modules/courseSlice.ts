@@ -6,6 +6,7 @@ import {
 } from "@reduxjs/toolkit";
 import { courseType } from "../../components/CourseCard";
 import { RootState } from "..";
+import { getCourses, updateCourseById } from "../../services/api";
 
 const initialState = {
   courseList: [] as courseType[],
@@ -37,9 +38,8 @@ export const getCourseListAsync =
   (): ThunkAction<void, RootState, unknown, UnknownAction> =>
   async (dispatch) => {
     try {
-      const courses = await fetch("http://localhost:3001/courses");
-      const coursesJson = await courses.json();
-      dispatch(getCourseList(coursesJson));
+      const courses = await getCourses();
+      dispatch(getCourseList(courses));
     } catch (error) {
       console.error("Unexpected Error in updateTrainingDataById:", error);
     }
@@ -53,13 +53,7 @@ export const taggleIsEnrolledAsync =
   async (dispatch) => {
     try {
       const partialUpdate = { isEnrolled: isEnrolled };
-      await fetch(`http://localhost:3001/courses/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(partialUpdate),
-      });
+      await updateCourseById(id, partialUpdate);
       dispatch(taggleIsEnrolled({ id, isEnrolled }));
     } catch (error) {
       console.error("Unexpected Error in updateTrainingDataById:", error);

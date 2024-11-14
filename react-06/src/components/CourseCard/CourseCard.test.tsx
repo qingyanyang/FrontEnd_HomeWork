@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { useAppDispatch } from "../../store/hooks";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/useUser";
@@ -102,20 +103,22 @@ describe("test component CourseCard", () => {
   /// 2. for users logged in:
   ///   2.1 from courses page: button with text: Enroll && status is active when isEnroll === false, status is disabled when isEnrolled === true
   ///   2.2 from profile page: button with text: Cancel && status: active
-  test("renders 'Cancel' button when fromProfile is true", () => {
+  test("renders 'Cancel' button when fromProfile is true", async () => {
     mockUseUser.mockReturnValue({ isAuthenticated: true });
+    const user = userEvent.setup();
 
     render(<CourseCard {...courseProps} fromProfile={true} />);
 
     const button = screen.getByText("Cancel");
     expect(button).toBeInTheDocument();
 
-    fireEvent.click(button);
+    await user.click(button);
     expect(dispatchMock).toHaveBeenCalledWith(taggleIsEnrolledAsync(1, false));
   });
 
-  test("renders active 'Enroll' button when user is not authenticated", () => {
+  test("renders active 'Enroll' button when user is not authenticated", async () => {
     mockUseUser.mockReturnValue({ isAuthenticated: false });
+    const user = userEvent.setup();
 
     render(<CourseCard {...courseProps} />);
 
@@ -125,12 +128,13 @@ describe("test component CourseCard", () => {
     /**
      * test3: event
      */
-    fireEvent.click(button);
+    await user.click(button);
     expect(navigateMock).toHaveBeenCalledWith("/login");
   });
 
-  test("renders active 'Enroll' button when user is authenticated and not enrolled", () => {
+  test("renders active 'Enroll' button when user is authenticated and not enrolled", async () => {
     mockUseUser.mockReturnValue({ isAuthenticated: true });
+    const user = userEvent.setup();
 
     render(<CourseCard {...courseProps} isEnrolled={false} />);
 
@@ -141,7 +145,7 @@ describe("test component CourseCard", () => {
     /**
      * test3: event
      */
-    fireEvent.click(button);
+    await user.click(button);
     expect(dispatchMock).toHaveBeenCalledWith(taggleIsEnrolledAsync(1, true));
   });
 

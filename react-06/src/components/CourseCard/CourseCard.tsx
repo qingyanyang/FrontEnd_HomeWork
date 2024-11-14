@@ -37,6 +37,7 @@ const CourseCard: React.FC<courseType & { fromProfile?: boolean }> = ({
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
+
   const handleEnrollCourse = (isEnrolled: boolean) => {
     if (isAuthenticated) {
       dispatch(taggleIsEnrolledAsync(id, isEnrolled));
@@ -61,33 +62,19 @@ const CourseCard: React.FC<courseType & { fromProfile?: boolean }> = ({
           <p className="course-card__tags">
             {language} · {duration} · {location}
           </p>
-          {fromProfile ? (
-            <button
-              onClick={() => handleEnrollCourse(false)}
-              className="enroll-btn"
-            >
-              Cancel
-            </button>
-          ) : !isAuthenticated ? (
-            <button
-              onClick={() => handleEnrollCourse(true)}
-              className="enroll-btn"
-            >
-              Enroll
-            </button>
-          ) : isEnrolled ? (
-            <button disabled className="enroll-btn">
-              Enroll
-            </button>
-          ) : (
-            <button
-              onClick={() => handleEnrollCourse(true)}
-              className="enroll-btn"
-            >
-              Enroll
-            </button>
-          )}
-
+          <button
+            onClick={() => {
+              if (fromProfile) {
+                handleEnrollCourse(false);
+              } else {
+                handleEnrollCourse(true);
+              }
+            }}
+            className="enroll-btn"
+            disabled={isAuthenticated && isEnrolled}
+          >
+            {fromProfile ? "Cancel" : "Enroll"}
+          </button>
           <div className="course-card__row">
             <i className="fa-regular fa-star"></i>
             <p className="course-card__score">{score}</p>

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import CourseCard, { courseType } from "../components/CourseCard";
+import CourseCard, { courseType } from "../components/CourseCard/CourseCard";
 import { getCourseListAsync } from "../store/modules/courseSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/useUser";
 import { useEffect } from "react";
 
@@ -14,12 +14,14 @@ const LoginPage = () => {
 
   return (
     <div className="page">
+      LoginPage
       <button
         onClick={() => {
           login();
+          navigate("/");
         }}
       >
-        <Link to="/">click to log in</Link>{" "}
+        click to log in
       </button>
     </div>
   );

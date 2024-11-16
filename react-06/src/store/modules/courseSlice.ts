@@ -4,7 +4,7 @@ import {
   ThunkAction,
   UnknownAction,
 } from "@reduxjs/toolkit";
-import { courseType } from "../../components/CourseCard/CourseCard";
+import { courseType } from "../../components/CourseCard";
 import { RootState } from "..";
 import { getCourses, updateCourseById } from "../../services/api";
 

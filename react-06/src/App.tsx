@@ -1,15 +1,12 @@
-import { useLocation } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
-import NavBar from "./components/NavBar";
-import Router from "./routes";
+import routerConfig from "./routes";
 
 function App() {
-  const location = useLocation();
-  const hideNavBar = location.pathname === "/login";
+  const router = createBrowserRouter(routerConfig);
   return (
     <div className="app">
-      {!hideNavBar && <NavBar />}
-      <Router />
+      <RouterProvider router={router} />
     </div>
   );
 }

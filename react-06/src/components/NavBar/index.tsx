@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../../context/useUser";
 
 const NavBar = () => {
   const { logout, userName, isAuthenticated } = useUser();
+  const navigate = useNavigate();
   return (
     <nav className="nav-bar">
       <ul>
@@ -23,16 +24,25 @@ const NavBar = () => {
               <p>{userName}</p>
             </li>
             <li>
-              <Link to="/">
-                <button onClick={logout}>Logout</button>
-              </Link>
+              <button
+                onClick={() => {
+                  logout();
+                  navigate("/");
+                }}
+              >
+                Logout
+              </button>
             </li>
           </>
         ) : (
           <li>
-            <Link to="/login">
-              <button>Login</button>
-            </Link>
+            <button
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Login
+            </button>
           </li>
         )}
       </ul>

@@ -4,7 +4,7 @@ import { useAppDispatch } from "../../store/hooks";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/useUser";
 import { taggleIsEnrolledAsync } from "../../store/modules/courseSlice";
-import CourseCard from "./CourseCard";
+import CourseCard from ".";
 
 /// mock used external functions
 jest.mock("../../store/hooks", () => ({

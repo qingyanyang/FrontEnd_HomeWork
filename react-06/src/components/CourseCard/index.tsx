@@ -71,7 +71,7 @@ const CourseCard: React.FC<courseType & { fromProfile?: boolean }> = ({
               }
             }}
             className="enroll-btn"
-            disabled={isAuthenticated && isEnrolled}
+            disabled={isAuthenticated && isEnrolled && !fromProfile}
           >
             {fromProfile ? "Cancel" : "Enroll"}
           </button>

@@ -13,7 +13,9 @@ const mockUseUser = useUser as jest.Mock;
 
 // Helper function to set up the component with the required providers
 const setup = (initialEntries = ["/"]) => {
-  const router = createMemoryRouter(routerConfig, { initialEntries });
+  const router = createMemoryRouter(routerConfig, {
+    initialEntries,
+  });
   const user = userEvent.setup();
   render(
     <Provider store={store}>
